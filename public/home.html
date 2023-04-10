@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="m-5">
+    <div class="flex-shrink-0">
+        <img src="#" alt="" width="300">
+    </div>
+    <div class="flex-grow-1 ms-3">
+        <h5 class="mt-5">Welcome, {{ name }} </h5>
+    <p>
+        Docmuent your favourite ideas with Litenote.  <br>
+       <input type="hidden" value="{{ csrf_token }}">
+    </p>
+
+        <div class="d-flex">
+         <div class="row col-md-12">
+           <div class="col-md-4">
+             <div class="card">
+               <div class="card-body">
+                 <h3 class="card-title">Full Name</h3>
+                 <p class="card-text">{{ name }}</p>
+                 {% comment %} Image will be in a circle flown to the right {% endcomment %}
+                 <picture>
+                    <source srcset="sourceset" type="image/svg+xml">
+                    <img src="./assets/img/user.png" class="img-fluid" alt="Profile Picture">
+                  </picture>
+               </div>
+             </div>
+           </div>
+
+           <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">Email</h3>
+                <p class="card-text">{{ email }}</p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-4">
+             <div class="card">
+               <div class="card-body">
+                 <h3 class="card-title">Status</h3>
+                 <p class="card-text">Active</p>
+               </div>
+             </div>
+           </div>
+         </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 m-5 center">
+<div class="card col-md-11 bg-dark m-3">
+  <div class="card-body">
+    <h5 class="card-title text-info">Create New Note</h5>
+    <p class="card-text text-white">
+      Are you inspired to write? Click the button below to document that beautiful idea on your mind now.
+    </p>
+    <a href="/new-note" class="btn btn-info float-end">Create Note</a>
+  </div>
+</div>
+</div>
+
+
+
+<div class="table-bordered m-5 card p-2">
+  <div class="border border-0 m-3" id="polls">
+    <h4 class="card-title pt-3">My polls</h4>
+  </div>
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr class="border border-2">
+        <th scope="col" class="col-1">S/N</th>
+        <th scope="col" class="col-4">Title</th>
+        <th scope="col" class="col-4">Note</th>
+        <th scope="col" class="col-3">Date Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="">
+        <td class="col-1">1. </td>
+        <td class="col-4">My Book</td>
+        <td class="col-4">Note</td>
+        <td class="col-3"> 28th March 2023</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

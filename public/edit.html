@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex mt-3">
+
+    <div class="flex-shrink-0">
+        <img src="#" alt="" width="300">
+    </div>
+    <div class="flex-grow-1 ms-3">
+        <h5 class="mt-5">Edit Note </h5>
+
+  </div>
+</div>
+<div class="col-md-12 m-5 center">
+<div class="card col-md-11 bg-dark">
+  <form class="card-body">
+    <h5 class="card-title text-info">Edit Note</h5>
+    <input type="hidden" value="{{ csrf_token }}" name="edit_note_form_token">
+    <div class="mb-3">
+      <label for="" class="form-label text-light mt-5">Title </label>
+      <input type="text" class="form-control" name="title" rows="3" required value="Note title">
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label text-light mt-5">Make your update here </label>
+      <textarea class="form-control" name="note" rows="3" required value="Note details for update"></textarea>
+    </div>
+    <button type="submit" class="btn btn-info float-end">Save</button>
+  </form>
+</div>
+</div>
+{% endblock content %}
