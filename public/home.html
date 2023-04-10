@@ -9,7 +9,7 @@
     <div class="flex-grow-1 ms-3">
         <h5 class="mt-5">Welcome, {{ name }} </h5>
     <p>
-        Docmuent your favourite ideas with Litenote.  <br>
+        Document your favourite ideas with Litenote. <br>
        <input type="hidden" value="{{ csrf_token }}">
     </p>
 
@@ -18,12 +18,13 @@
            <div class="col-md-4">
              <div class="card">
                <div class="card-body">
-                 <h3 class="card-title">Full Name</h3>
-                 <p class="card-text">{{ name }}</p>
+                 <h3 class="card-title">{{ name }}</h3>
+                 <p class="card-text">{{ bio }} </p>
                  {% comment %} Image will be in a circle flown to the right {% endcomment %}
                  <picture>
                     <source srcset="sourceset" type="image/svg+xml">
-                    <img src="./assets/img/user.png" class="img-fluid" alt="Profile Picture">
+                    {% load static %}
+                    <img src="{% static "img/" %}{{ profile_image }}" class="img-fluid" alt="Profile Picture">
                   </picture>
                </div>
              </div>
@@ -32,8 +33,8 @@
            <div class="col-md-4">
             <div class="card">
               <div class="card-body">
-                <h3 class="card-title">Email</h3>
-                <p class="card-text">{{ email }}</p>
+                <h3 class="card-title">Contact </h3>
+                <p class="card-text">{{ email }} | {{ phone_number }}</p>
               </div>
             </div>
           </div>
@@ -62,10 +63,10 @@
 </div>
 
 
-
+{% if notes %}
 <div class="table-bordered m-5 card p-2">
-  <div class="border border-0 m-3" id="polls">
-    <h4 class="card-title pt-3">My polls</h4>
+  <div class="border border-0 m-3" id="notes">
+    <h4 class="card-title pt-3">My Notes</h4>
   </div>
   <table class="table table-hover table-striped">
     <thead>
@@ -77,13 +78,18 @@
       </tr>
     </thead>
     <tbody>
+
+      {% for n in notes %}
       <tr class="">
-        <td class="col-1">1. </td>
-        <td class="col-4">My Book</td>
-        <td class="col-4">Note</td>
-        <td class="col-3"> 28th March 2023</td>
+        <td class="col-1">{{ forloop.counter }}. </td>
+        <td class="col-4">{{ n.title }}</td>
+        <td class="col-4">{{ n.note_content }}</td>
+        <td class="col-3"> {{ n.date_created }}</td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
+
+{% endif %}
 {% endblock content %}
